@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  name: MyString
+  description: MyText
+  url: MyString
+  custom_domain: MyString
+  cover_image: MyString
+  thumbnail_image: MyString
+  type: 
+  call_to_action: MyString
+  price: 9.99
+  currency: MyString
+
+two:
+  user: two
+  name: MyString
+  description: MyText
+  url: MyString
+  custom_domain: MyString
+  cover_image: MyString
+  thumbnail_image: MyString
+  type: 
+  call_to_action: MyString
+  price: 9.99
+  currency: MyString

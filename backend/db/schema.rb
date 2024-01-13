@@ -10,9 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_12_001601) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_13_081239) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "product_details", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.string "attribute_name"
+    t.text "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_product_details_on_product_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name"
+    t.text "description"
+    t.string "url"
+    t.string "custom_domain"
+    t.string "cover_image"
+    t.string "thumbnail_image"
+    t.string "product_type"
+    t.string "call_to_action"
+    t.decimal "price", precision: 10, scale: 2
+    t.string "currency"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_products_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
@@ -20,6 +46,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_12_001601) do
     t.integer "age"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "bio"
+    t.string "name"
+    t.string "twitter_handle"
+    t.string "gumroad_user_id"
+    t.string "url"
   end
 
+  add_foreign_key "product_details", "products"
+  add_foreign_key "products", "users"
 end
