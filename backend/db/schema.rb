@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_13_081239) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_22_222706) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -37,6 +37,30 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_13_081239) do
     t.string "currency"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "custom_permalink"
+    t.text "custom_receipt"
+    t.text "custom_summary"
+    t.boolean "customizable_price"
+    t.boolean "deleted"
+    t.integer "max_purchase_count"
+    t.string "preview_url"
+    t.boolean "require_shipping"
+    t.string "subscription_duration"
+    t.boolean "published"
+    t.string "gumroad_id"
+    t.string "short_url"
+    t.string "thumbnail_url"
+    t.string "formatted_price"
+    t.json "file_info"
+    t.integer "sales_count"
+    t.integer "sales_usd_cents"
+    t.boolean "is_tiered_membership"
+    t.json "recurrences"
+    t.string "tags", default: [], array: true
+    t.json "purchasing_power_parity_prices"
+    t.json "variants"
+    t.json "custom_fields"
+    t.integer "user_product_number"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 

@@ -85,6 +85,5 @@ test:
 #
 production:
   <<: *default
-  database: backend_production
-  username: y0gijerry
-  password: 'test'
+  url: <%= ENV['DATABASE_URL'] %>
+  

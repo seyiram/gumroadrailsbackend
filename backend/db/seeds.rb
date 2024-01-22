@@ -8,21 +8,47 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-user = User.create(username: "jerry", password: "test", age: 35)
+# Create 5 users
+5.times do |i|
+  User.create(
+    username: "User_#{i + 1}",
+    password: "password", # Ensure to hash passwords appropriately
+    age: rand(18..50), # Random age between 18 and 50
+    bio: "Bio of User #{i + 1}",
+    name: "Name_#{i + 1}",
+    twitter_handle: "@user#{i + 1}",
+    gumroad_user_id: SecureRandom.hex(10), # Random gumroad user ID
+    url: "http://user#{i + 1}.example.com"
+  )
+end
 
-# Create Users
-user1 = User.create(username: "Johnny", password: "password")
-user2 = User.create(username: "Janey", password: "password")
+# Fetch the created users
+users = User.all
 
-# Create Products for User 1
-product1 = Product.create(name: "Ruby on Rails Tutorial", description: "Learn Rails by Example", url: "http://example.com/rails-tutorial", custom_domain: "rails-tutorial.example.com", cover_image: "rails-tutorial-cover.jpg", thumbnail_image: "rails-tutorial-thumb.jpg", product_type: "e-book", call_to_action: "Buy this", price: 29.99, currency: "USD", user: user1)
+# Product sample data
+product_names = ["Product A", "Product B", "Product C", "Product D", "Product E"]
+product_types = ["e-book", "course", "membership", "physical", "bundle"]
+currencies = ["USD", "EUR", "GBP"]
 
-product2 = Product.create(name: "React for Beginners", description: "Understanding React and Redux", url: "http://example.com/react-beginners", custom_domain: "react-beginners.example.com", cover_image: "react-beginners-cover.jpg", thumbnail_image: "react-beginners-thumb.jpg", product_type: "course", call_to_action: "I want this", price: 19.99, currency: "USD", user: user1)
+# For each user, create 10 products
+users.each do |user|
+  10.times do |j|
+    user.products.create(
+      name: "#{product_names.sample} #{j + 1}", # Random product name
+      user_product_number: i + 1,
+      description: "Description for #{product_names.sample} #{j + 1}",
+      url: "http://example.com/product_#{j + 1}",
+      custom_domain: "product#{j + 1}.example.com",
+      cover_image: "cover_image_#{j + 1}.jpg",
+      thumbnail_image: "thumbnail_#{j + 1}.jpg",
+      product_type: product_types.sample, # Random product type
+      call_to_action: "Buy Now",
+      price: rand(10..100), # Random price between 10 and 100
+      currency: currencies.sample, # Random currency
+      published: [true, false].sample # Randomly published or not
+      # Add other product fields as needed
+    )
+  end
+end
 
-# Create Product Details for Product 1
-ProductDetail.create(product: product1, attribute_name: "Number of Pages", value: "300")
-ProductDetail.create(product: product1, attribute_name: "Format", value: "PDF")
-
-# Create Product Details for Product 2
-ProductDetail.create(product: product2, attribute_name: "Video Hours", value: "15")
-ProductDetail.create(product: product2, attribute_name: "Includes", value: "Source Code")
+puts "Database seeded successfully."
