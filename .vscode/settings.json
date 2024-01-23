@@ -1,9 +1,0 @@
-{
-    "launch": {
-        "configurations": [],
-        "compounds": []
-    },
-    "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-}
