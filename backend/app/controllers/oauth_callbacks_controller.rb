@@ -22,3 +22,4 @@ class OauthCallbacksController < ApplicationController
     redirect_to dashboard_path, alert: "Failed to Link Gumroad Account"
   end
 end
+end
