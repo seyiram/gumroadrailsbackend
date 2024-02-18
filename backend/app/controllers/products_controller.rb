@@ -12,8 +12,9 @@ class ProductsController < ApplicationController
     def show
       begin
         @product = logged_in_user.products.find_by(user_product_number: params[:id])
+        if @product
         render json: @product
-      rescue ActiveRecord::RecordNotFound
+        else
         render json: { error: "Product not found" }, status: :not_found
       end
     end
@@ -41,7 +42,11 @@ class ProductsController < ApplicationController
 
     # DELETE /products/1
     def destroy
-      @product.destroy
+     if @product.destroy
+      head :no_content
+     else
+      render json: { error: "Product could not be deleted" }, status: :unprocessable_entity
+     end
     end
 
     private
@@ -52,4 +57,10 @@ class ProductsController < ApplicationController
       def product_params
         params.require(:product).permit(:name, :description, :url, :custom_domain, :cover_image, :thumbnail_image, :type, :call_to_action, :price, :currency)
       end
+
+      def generate_url_product_url(input)
+        base_url = logged_in_user.url
+        "#{base_url}#{user_input}"
+      end
+end
 end
