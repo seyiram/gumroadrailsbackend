@@ -62,4 +62,3 @@ class ProductsController < ApplicationController
         "#{base_url}#{user_input}"
       end
 end
-end
