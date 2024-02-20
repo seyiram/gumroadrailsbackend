@@ -10,7 +10,6 @@ class ProductsController < ApplicationController
 
     # GET /products/1
     def show
-      begin
         @product = logged_in_user.products.find_by(user_product_number: params[:id])
         if @product
         render json: @product
