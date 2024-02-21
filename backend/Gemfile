@@ -38,6 +38,8 @@ gem "rack-cors"
 # A pure ruby implementation of the RFC 7519 OAuth JSON Web Token (JWT) standard.
 gem 'jwt', '~> 2.7', '>= 2.7.1'
 
+# OPEN AI 
+gem "ruby-openai"
 
 
 group :development, :test do
