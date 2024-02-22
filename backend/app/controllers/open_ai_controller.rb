@@ -4,9 +4,10 @@ class OpenAiController < ApplicationController
 
   def generate_image
     client = OpenAI::Client.new(api_key: ENV["OPEN_AI_KEY"])
-    response = client.images.generate(
+    response = client.images.variations(
       parameters: {
         prompt: params[:prompt],
+        n: params[:n],
         size: params[:size] || '1024x1024'
       }
     )
