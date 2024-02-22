@@ -10,8 +10,7 @@ class OpenAiController < ApplicationController
         size: params[:size] || '1024x1024'
       }
     )
-    urls = response['data'].map { |img| img['url'] }
-    render json: { urls: urls }
+    render json: { url: response.dig("data", 0, "url") }
   rescue => e
     render json: { error: e.message }, status: :internal_server_error
   end
