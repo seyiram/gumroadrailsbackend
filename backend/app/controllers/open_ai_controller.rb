@@ -4,10 +4,11 @@ class OpenAiController < ApplicationController
 
   def generate_image
     client = OpenAI::Client.new(api_key: ENV["OPEN_AI_KEY"])
-    response = client.images.variations(
+    response = client.images.generate(
       parameters: {
+        model: 'dall-e-3',
         prompt: params[:prompt],
-        n: params[:n],
+        n: params[:n] || 1,
         size: params[:size] || '1024x1024'
       }
     )
