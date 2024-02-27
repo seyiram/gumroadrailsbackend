@@ -54,7 +54,7 @@ class ProductsController < ApplicationController
       end
 
       def product_params
-        params.require(:product).permit(:name, :description, :url, :custom_domain, :cover_image, :thumbnail_image, :product_type, :call_to_action, :price, :currency)
+        params.require(:product).permit(:name, :description, :url, :custom_domain, :cover_image, :thumbnail_image, :product_type, :call_to_action, :price, :currency, :published)
       end
 
       def generate_url_product_url(input)
