@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :authorized, only: [:auto_login]
+    before_action :authorized, only: [:auto_login, :update]
 
   # REGISTER
   def create
@@ -27,8 +27,6 @@ class UsersController < ApplicationController
     end
   end
   def update
-    @user = User.find(params[:id])
-
     if @user.update(user_params)
       render json: { message: 'User updated successfully', user: @user }
     else
