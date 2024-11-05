@@ -83,7 +83,17 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
+# production:
+#   <<: *default
+#   url: <%= ENV['DATABASE_URL'] %>
+#   database: <%= ENV['DB_NAME'] %>
+#   username: <%= ENV['DB_USER'] %>
+#   password: <%= ENV['DB_PASS'] %>
+#   host: <%= ENV['DB_HOST'] %>
+#   port: <%= ENV['DB_PORT'] %>
+#   sslmode: <%= ENV['DB_SSLMODE'] || 'disable' %>
+  
+
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
-  
+  url: <%= ENV['DATABASE_PUBLIC_URL'] || ENV['DATABASE_URL'] %>
