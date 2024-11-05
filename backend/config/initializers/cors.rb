@@ -7,12 +7,15 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "*"
+    origins 'http://localhost:5173',
+            'https://localhost:3000',
+            'https://gumroad-prototype.netlify.app'
 
     resource "*",
       headers: :any,
       methods: [:get, :post, :put, :patch, :delete, :options, :head],
       expose: ["Authorization"],
-      credentials: true
+      credentials: true,
+      max_age: 86400 # 24 hours
   end
 end
