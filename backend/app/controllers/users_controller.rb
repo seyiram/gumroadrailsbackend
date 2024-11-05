@@ -13,7 +13,11 @@ class UsersController < ApplicationController
   end
 
   def auto_login
-    render json: @user
+    if @user
+      render json: @user
+    else
+      render json: {error: "Please log in first"}, status: :unauthorized
+    end
   end
   # LOGGING IN
   def login
